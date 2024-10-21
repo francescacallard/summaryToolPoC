@@ -3,6 +3,7 @@ To run this app you will need:
 2. AN OpenAI Azure Endpoint
 
 Development
+
 To run the app locally, follow these steps:
 
 Install the dependencies using YARN
