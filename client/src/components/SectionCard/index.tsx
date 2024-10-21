@@ -1,28 +1,28 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { GeneratedContent } from '../GeneratedContent';
-import { generateContent } from '../../api/generateContent';
-import styles from './styles.module.css';
+import React, { useState, useEffect, useCallback } from 'react'
+import { GeneratedContent } from '../GeneratedContent'
+import { generateContent } from '../../api/generateContent'
+import styles from './styles.module.css'
 
 interface Section {
-  url: string;
+  url: string
   content?: {
-    link?: string;
-    subheading?: string;
-    body?: string;
+    link?: string
+    subheading?: string
+    body?: string
   };
-  showFullText?: boolean;
+  showFullText?: boolean
 }
 
 interface SectionCardProps {
   section: Section;
-  onSectionChange: (field: string, value: string) => void;
-  onContentChange: (content: any) => void;
-  onToggleFullText: () => void;
+  onSectionChange: (field: string, value: string) => void
+  onContentChange: (content: any) => void
+  onToggleFullText: () => void
 }
 
 export const SectionCard: React.FC<SectionCardProps> = React.memo(({ section, onSectionChange, onContentChange, onToggleFullText }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasAIContent, setHasAIContent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasAIContent, setHasAIContent] = useState(false)
 
   const updateLinkInContent = useCallback((newUrl: string) => {
     if (section.content?.link !== newUrl) {
@@ -31,33 +31,33 @@ export const SectionCard: React.FC<SectionCardProps> = React.memo(({ section, on
         link: newUrl
       });
     }
-  }, [section.content, onContentChange]);
+  }, [section.content, onContentChange])
 
   useEffect(() => {
     if (section.url && (!section.content || section.content.link !== section.url)) {
-      updateLinkInContent(section.url);
+      updateLinkInContent(section.url)
     }
-  }, [section.url]);
+  }, [section.url])
 
   const handleGenerateContent = async () => {
-    setIsLoading(true);
-    setHasAIContent(false);
+    setIsLoading(true)
+    setHasAIContent(false)
     try {
-      const newContent = await generateContent('default', section.url);
+      const newContent = await generateContent('default', section.url)
       onContentChange({
         ...newContent,
         link: section.url
-      });
+      })
       setHasAIContent(true);
     } catch (error) {
-      console.error('Error generating content:', error);
+      console.error('Error generating content:', error)
       onContentChange({
         subheading: 'Error generating content',
         body: (error as Error).message,
         link: section.url
-      });
+      })
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }
 
@@ -88,5 +88,5 @@ export const SectionCard: React.FC<SectionCardProps> = React.memo(({ section, on
         )}
       </div>
     </div>
-  );
-});
+  )
+})

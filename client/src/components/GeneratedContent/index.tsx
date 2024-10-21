@@ -1,17 +1,17 @@
-import React from 'react';
-import styles from './styles.module.css';
+import React from 'react'
+import styles from './styles.module.css'
 
 interface Content {
-  subheading: string;
-  body: string;
-  link?: string;
+  subheading: string
+  body: string
+  link?: string
 }
 
 interface GeneratedContentProps {
-  content: Content;
-  showFullText: boolean;
-  onContentChange: (content: Content) => void;
-  onToggleFullText: () => void;
+  content: Content
+  showFullText: boolean
+  onContentChange: (content: Content) => void
+  onToggleFullText: () => void
 }
 
 export const GeneratedContent: React.FC<GeneratedContentProps> = ({ content, showFullText, onContentChange, onToggleFullText }) => {
@@ -19,8 +19,8 @@ export const GeneratedContent: React.FC<GeneratedContentProps> = ({ content, sho
     onContentChange({
       ...content,
       [field]: value
-    });
-  };
+    })
+  }
 
   const renderLinkButton = () => {
     if (content.link) {
@@ -96,5 +96,5 @@ export const GeneratedContent: React.FC<GeneratedContentProps> = ({ content, sho
       {renderLinkButton()}
       <button onClick={onToggleFullText} className={styles.toggleButton}>Show Full Text</button>
     </div>
-  );
-};
+  )
+}

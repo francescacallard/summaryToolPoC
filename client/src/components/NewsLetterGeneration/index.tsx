@@ -1,28 +1,28 @@
-import React, { useState, useCallback } from 'react';
-import { SectionCard } from '../SectionCard';
-import styles from './styles.module.css';
+import React, { useState, useCallback } from 'react'
+import { SectionCard } from '../SectionCard'
+import styles from './styles.module.css'
 
 
 export const NewsletterGenerator: React.FC = () => {
   const [sections, setSections] = useState<{ id: number; url: string; content: { link?: string; subheading?: string; body?: string } | undefined; showFullText: boolean }[]>([
     { id: 1, url: '', content: undefined, showFullText: false }
-  ]);
+  ])
 
   const handleSectionChange = useCallback((id: number, field: string, value: any) => {
     setSections(prevSections =>
       prevSections.map(section =>
         section.id === id ? { ...section, [field]: value } : section
       )
-    );
-  }, []);
+    )
+  }, [])
 
   const handleContentChange = useCallback((id: number, newContent: any) => {
     setSections(prevSections =>
       prevSections.map(section =>
         section.id === id ? { ...section, content: newContent } : section
       )
-    );
-  }, []);
+    )
+  }, [])
   
 
   const handleToggleFullText = useCallback((id: number) => {
@@ -30,8 +30,8 @@ export const NewsletterGenerator: React.FC = () => {
       prevSections.map(section =>
         section.id === id ? { ...section, showFullText: !section.showFullText } : section
       )
-    );
-  }, []);
+    )
+  }, [])
 
   const addSection = () => {
     setSections(prevSections => [
@@ -42,8 +42,8 @@ export const NewsletterGenerator: React.FC = () => {
         content: undefined,
         showFullText: false
       }
-    ]);
-  };
+    ])
+  }
 
   return (
     <div className={styles.newsletterGenerator}>
@@ -58,5 +58,5 @@ export const NewsletterGenerator: React.FC = () => {
       ))}
       <button onClick={addSection} className={styles.addSectionButton}>Add Section</button>
     </div>
-  );
-};
+  )
+}
