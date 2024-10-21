@@ -37,10 +37,7 @@ const createChatCompletion = async (messages) => {
     { role: 'system', content: systemPrompt },
     ...messages
   ];
-  console.log('Messages sent to API:', JSON.stringify(messagesWithSystemPrompt, null, 2));
-
   const result = await client.getChatCompletions(deploymentId, messagesWithSystemPrompt);
-  console.log('API response:', JSON.stringify(result, null, 2));
 
   return result.choices[0].message.content;
 };
@@ -69,8 +66,6 @@ app.post('/', validateRequestBody, async (req, res) => {
   const { messages } = req.body;
   
   try {
-    console.log('Received messages from frontend:', JSON.stringify(messages, null, 2));
-
     const userMessage = messages.find(message => message.role === 'user')?.content;
     const urlMatch = userMessage.match(/URL:\s*(https?:\/\/\S+)/i);
 
@@ -88,16 +83,6 @@ app.post('/', validateRequestBody, async (req, res) => {
     ];
 
     const aiResponse = await createChatCompletion(newMessages);
-    console.log('AI response:', aiResponse);
-
-    // Check if the response follows the format specified in the system prompt
-    const followsFormat = aiResponse.includes('[Heading]') && 
-                          aiResponse.includes('[Subheading]') && 
-                          aiResponse.includes('[Link: Article]');
-
-    if (!followsFormat) {
-      console.warn('Warning: AI response may not follow the system prompt format');
-    }
 
     res.json({ 
       response: aiResponse,
