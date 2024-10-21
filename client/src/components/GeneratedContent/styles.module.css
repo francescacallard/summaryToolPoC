@@ -1,0 +1,51 @@
+.generatedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.headingInput,
+.subheadingInput,
+.linkInput,
+.bodyTextArea,
+.fullTextArea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.headingInput {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.bodyTextArea,
+.fullTextArea {
+  resize: vertical;
+}
+
+.linkButton {
+  text-align: left;
+  margin-left: 4px;
+}
+
+.link {
+  color: rgb(112, 76, 182);
+}
+
+.toggleButton {
+  padding: 0.5rem 1rem;
+  background-color: #3f3f5d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  align-self: flex-start;
+}

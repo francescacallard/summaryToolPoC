@@ -1,0 +1,42 @@
+.wholePageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; /* Or any other max-width you prefer */
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.contentBox {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #4f92ff63; /* Add a border around the content */
+  border-radius: 8px; /* Optional: rounds the corners of the box */
+  padding: 20px; /* Add some internal padding */
+  background-color: #fff; /* Optional: set a background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+@media screen and (max-width: 768px) {
+  .wholePageContainer {
+    padding: 10px;
+  }
+  
+  .contentBox {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wholePageContainer {
+    padding: 5px;
+  }
+  
+  .contentBox {
+    padding: 5px;
+  }
+}
