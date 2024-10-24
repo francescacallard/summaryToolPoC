@@ -87,8 +87,7 @@ app.post('/', validateRequestBody, async (req, res) => {
     res.json({ 
       response: aiResponse,
       systemPromptUsed: true,
-      followsFormat: followsFormat
-    });
+   });
   } catch (error) {
     console.error('Error in chat completion:', error);
     res.status(500).json({ error: 'An error occurred', details: error.message });
